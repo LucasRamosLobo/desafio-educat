@@ -4,4 +4,4 @@ aplicaçao feita usando django framework no backend, utilizei o django allauth p
 
 para rodar basta instalar as dependências com o comando pip install -r requirements.txt e rodar o projeto com o comando python manage.py runserver
 
-utilize o endpoint /list/register ou /accounts/signup/?next=%2Flist%2F para criar um usuário e o endpoint /list/login ou /accounts/login/?next=%2Flist%2F fazer o login, pode utilizar também: username:lucas senha:123Lucas83!
+utilize o endpoint /list/register ou /accounts/signup/?next=%2Flist%2F para criar um usuário e o endpoint /list/login ou /accounts/login/?next=%2Flist%2F para fazer o login, pode utilizar também a conta que criei: username:lucas senha:123Lucas83!
