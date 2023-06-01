@@ -1,10 +1,30 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from allauth.account.forms import SignupForm
 from allauth.account.views import SignupView
 from .forms import TaskForm
 from .models import Task, TaskLog
+
+def update_status_view(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+
+    # Atualize o status da tarefa como necessário
+    task.status = 'concluida'  # Altere para o status desejado
+    task.save()
+
+    # Verifique se já existe um registro de log para a tarefa
+    task_log = TaskLog.objects.filter(task=task).first()
+
+    if task_log:
+        # Atualize o registro de log existente
+        task_log.message = 'Status atualizado'
+        task_log.save()
+    else:
+        # Crie um novo registro de log
+        TaskLog.objects.create(task=task, message='Status atualizado')
+
+    return redirect('list:home')
 
 class CustomSignupView(SignupView):
     form_class = SignupForm
@@ -55,7 +75,7 @@ def register_view(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             try:
-                form.save(request=request)  # Corrigido: passando o argumento request
+                form.save(request=request)
                 print('Usuário registrado com sucesso.')
                 return redirect('/list/')  # Redireciona para a página de sucesso após o registro
             except Exception as e:

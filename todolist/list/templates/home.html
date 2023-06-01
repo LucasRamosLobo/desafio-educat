@@ -8,7 +8,16 @@
       <li>
         <strong>Tarefa:</strong> {{ task.description }}<br>
         <strong>Data de Criação:</strong> {{ task.tasklog.created_at }}<br>
-        <strong>Log:</strong> {{ task.tasklog.message }}
+        <strong>Log:</strong> {{ task.tasklog.message }}<br>
+        <strong>Status:</strong> {{ task.get_status_display }}<br>
+        <form method="POST" action="{% url 'list:update_status' task.id %}">
+          {% csrf_token %}
+          <select name="status">
+            <option value="IN_PROGRESS" {% if task.status == 'IN_PROGRESS' %}selected{% endif %}>Em andamento</option>
+            <option value="COMPLETED" {% if task.status == 'COMPLETED' %}selected{% endif %}>Concluída</option>
+          </select>
+          <button type="submit">Atualizar Status</button>
+        </form>
       </li>
     {% empty %}
       <li>Nenhuma tarefa encontrada.</li>

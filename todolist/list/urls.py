@@ -8,4 +8,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('login/', views.login_view, name='login'),
     path('register/', views.register_view, name='register'),
+    path('update_status/<int:task_id>/', views.update_status_view, name='update_status'),
 ]
