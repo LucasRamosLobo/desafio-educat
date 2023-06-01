@@ -1,0 +1,24 @@
+{% block content %}
+  <h2>Bem-vindo(a)!</h2>
+  <p>Você está logado(a) como {{ user.username }}.</p>
+
+  <h3>Suas Tarefas</h3>
+  <ul>
+    {% for task in tasks %}
+      <li>
+        <strong>Tarefa:</strong> {{ task.description }}<br>
+        <strong>Data de Criação:</strong> {{ task.tasklog.created_at }}<br>
+        <strong>Log:</strong> {{ task.tasklog.message }}
+      </li>
+    {% empty %}
+      <li>Nenhuma tarefa encontrada.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Adicionar Tarefa</h3>
+  <form method="POST" action="{% url 'list:home' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Adicionar</button>
+  </form>
+{% endblock %}
