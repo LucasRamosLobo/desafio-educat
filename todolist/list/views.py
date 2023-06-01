@@ -6,6 +6,7 @@ from allauth.account.views import SignupView
 from .forms import TaskForm
 from .models import Task, TaskLog
 
+@login_required
 def update_status_view(request, task_id):
     task = get_object_or_404(Task, id=task_id)
 
@@ -19,6 +20,17 @@ def update_status_view(request, task_id):
         task_log.save()
     else:
         TaskLog.objects.create(task=task, message='Status atualizado')
+
+    return redirect('list:home')
+
+@login_required
+def delete_task_view(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+
+    # Excluir o registro de log associado à tarefa (se existir)
+    TaskLog.objects.filter(task=task).delete()
+
+    task.delete()
 
     return redirect('list:home')
 
@@ -83,7 +95,3 @@ def register_view(request):
         form = SignupForm()
 
     return render(request, 'register.html', {'form': form})
-
-def logout_view(request):
-    logout(request)
-    return redirect('login')

@@ -25,6 +25,10 @@
           </select>
           <button type="submit" class="update-button">Atualizar Status</button>
         </form>
+        <form method="POST" action="{% url 'list:delete_task' task.id %}">
+          {% csrf_token %}
+          <button type="submit" class="delete-button btn btn-danger">Excluir</button>
+        </form>
       </li>
     {% empty %}
       <li>Nenhuma tarefa encontrada.</li>
