@@ -6,11 +6,14 @@
   <h2 class="welcome">Bem-vindo(a)!</h2>
   <p>Você está logado(a) como {{ user.username }}.</p>
 
+  <a href="{% url 'account_logout' %}" class="btn btn-danger">Logout</a>
+
   <h3 class="task-heading">Suas Tarefas</h3>
   <ul class="task-list">
     {% for task in tasks %}
       <li>
-        <strong>Tarefa:</strong> {{ task.description }}<br>
+        <strong>Título:</strong> {{ task.title }}<br>
+        <strong>Descrição:</strong> {{ task.description }}<br>
         <strong>Data de Criação:</strong> {{ task.tasklog.created_at }}<br>
         <strong>Log:</strong> {{ task.tasklog.message }}<br>
         <strong>Status:</strong> {{ task.get_status_display }}<br>

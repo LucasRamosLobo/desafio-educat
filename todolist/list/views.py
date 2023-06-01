@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from allauth.account.forms import SignupForm
 from allauth.account.views import SignupView
@@ -9,19 +9,15 @@ from .models import Task, TaskLog
 def update_status_view(request, task_id):
     task = get_object_or_404(Task, id=task_id)
 
-    # Atualize o status da tarefa como necessário
-    task.status = 'concluida'  # Altere para o status desejado
+    task.status = 'concluida'
     task.save()
 
-    # Verifique se já existe um registro de log para a tarefa
     task_log = TaskLog.objects.filter(task=task).first()
 
     if task_log:
-        # Atualize o registro de log existente
         task_log.message = 'Status atualizado'
         task_log.save()
     else:
-        # Crie um novo registro de log
         TaskLog.objects.create(task=task, message='Status atualizado')
 
     return redirect('list:home')
@@ -34,7 +30,7 @@ class CustomSignupView(SignupView):
 @login_required
 def home_view(request):
     user = request.user
-    tasks = Task.objects.filter(user=user).order_by('-tasklog__created_at')  # Ordena as tarefas pelo campo created_at do modelo TaskLog
+    tasks = Task.objects.filter(user=user).order_by('-tasklog__created_at')
     form = TaskForm()
 
     if request.method == 'POST':
@@ -64,7 +60,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             print(f'O usuário {username} existe.')
-            return redirect('/list/')  # Redireciona para a página de sucesso após o login
+            return redirect('/list/')
         else:
             print('Usuário não encontrado ou senha incorreta.')
 
@@ -77,13 +73,17 @@ def register_view(request):
             try:
                 form.save(request=request)
                 print('Usuário registrado com sucesso.')
-                return redirect('/list/')  # Redireciona para a página de sucesso após o registro
+                return redirect('/list/')
             except Exception as e:
                 print(f'Erro no registro do usuário: {str(e)}')
         else:
             print('Formulário inválido.')
-            print(form.errors)  # Imprime os erros do formulário no terminal
+            print(form.errors)
     else:
         form = SignupForm()
 
     return render(request, 'register.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

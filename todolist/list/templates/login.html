@@ -1,4 +1,8 @@
+{% load static %}
+{% load bootstrap4 %}
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<div class="container">
   <h2>Login</h2>
 
   {% if messages %}
@@ -7,16 +11,17 @@
     {% endfor %}
   {% endif %}
 
-  <form method="POST" action="{% url 'list:login' %}">
+  <form method="POST" action="{% url 'list:login' %}" class="form-group">
     {% csrf_token %}
     <div>
       <label for="id_username">Username:</label>
-      <input type="text" name="username" id="id_username">
+      <input class = 'form-control' type="text" name="username" id="id_username">
     </div>
     <div>
       <label for="id_password">Password:</label>
-      <input type="password" name="password" id="id_password">
+      <input type="password" class = 'form-control' name="password" id="id_password">
     </div>
-    <button type="submit">Login</button>
+    <button class="btn" type="submit">Login</button>
   </form>
+</div>
 {% endblock %}
