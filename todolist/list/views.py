@@ -23,6 +23,24 @@ def update_status_view(request, task_id):
 
     return redirect('list:home')
 
+def edit_task_view(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('list:home')
+    else:
+        form = TaskForm(instance=task)
+
+    context = {
+        'form': form,
+        'task': task
+    }
+
+    return render(request, 'taskedit.html', context)
+
 @login_required
 def delete_task_view(request, task_id):
     task = get_object_or_404(Task, id=task_id)

@@ -1,0 +1,11 @@
+{% load bootstrap4 %}
+
+{% block content %}
+  <h2>Editar Tarefa</h2>
+
+  <form method="POST" action="{% url 'list:edit_task' task.id %}" class="form-group">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+{% endblock %}
