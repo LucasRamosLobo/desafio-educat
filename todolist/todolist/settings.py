@@ -57,6 +57,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'todolist.urls'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'list:login'
 
 TEMPLATES = [
     {
