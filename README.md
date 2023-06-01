@@ -1,7 +1,13 @@
 # desafio-educat
 
-Aplicaçao feita usando django, utilizei o django-allauth para fazer a autenticaçao, criei um model para as tasks e um model para atualizar o status de cada task, a aplicaçao consiste em um to-do-list simples, o front end foi feito em html e css e banco de dados sqlite.
+Aplicação desenvolvida usando Django, com utilização do django-allauth para autenticação. Foram criados modelos para tarefas (tasks) e para atualização do status de cada tarefa. A aplicação consiste em um to-do list simples, com o front-end implementado em HTML e CSS, e o banco de dados utilizado é o SQLite.
 
-para rodar basta instalar as dependências com o comando pip install -r requirements.txt e rodar o projeto com o comando python manage.py runserver
+Para executar a aplicação, siga os seguintes passos:
 
-utilize a url /list/register ou /accounts/signup/?next=%2Flist%2F para criar um usuário e /list/login ou /accounts/login/?next=%2Flist%2F para fazer o login, pode utilizar também a conta que criei: username:lucas senha:123Lucas83!
+Instale as dependências com o comando: pip install -r requirements.txt
+Execute o projeto com o comando: python manage.py runserver
+Para criar um usuário, utilize a URL /list/register ou /accounts/signup/?next=%2Flist%2F. Para fazer login, utilize a URL /list/login ou /accounts/login/?next=%2Flist%2F. Também é possível utilizar a conta já criada com as seguintes credenciais:
+
+Nome de usuário: lucas
+Senha: 123Lucas83!
+
