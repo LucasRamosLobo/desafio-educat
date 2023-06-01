@@ -1,0 +1,85 @@
+.task-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .task-list li {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  .task-list li strong {
+    font-weight: bold;
+  }
+  .container {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .task-list li form {
+    margin-top: 5px;
+  }
+
+  .task-list li form select {
+    margin-right: 10px;
+  }
+
+  .task-list li form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #4CAF50;
+    border: 1px solid #4CAF50;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+
+  .btn-primary {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+  }
+
+  .btn-primary:hover {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+  }
